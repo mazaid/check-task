@@ -7,7 +7,7 @@ module.exports = {
     data: joi.object().unknown(true).required(),
     result: joi.object().unknown(true).keys({
         status: joi.string().valid(['pass', 'fail', 'warn']).required(),
-        message: joi.string(),
+        message: joi.string()
     }),
     creationDate: joi.date().timestamp('unix'),
     startDate: joi.date().timestamp('unix'),
