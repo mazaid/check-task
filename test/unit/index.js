@@ -12,13 +12,38 @@ describe('CheckTask', function() {
 
     describe('#validate', function() {
 
-        it('should validate success', function(done) {
+        it('should validate success, on creation', function(done) {
             var raw = {
                 id: uuid.v4(),
                 execTaskId: uuid.v4(),
                 checker: 'ping',
                 data: {
                     host: 'somehost.net'
+                }
+            };
+
+            var task = new CheckTask(raw);
+
+            task.validate()
+                .then(() => {
+                    assert.equal(task.isValid(), true);
+                    done();
+                })
+                .catch((error) => {
+                    done(error);
+                });
+        });
+
+        it('should validate success, on set result', function (done) {
+            var raw = {
+                id: uuid.v4(),
+                execTaskId: uuid.v4(),
+                checker: 'ping',
+                data: {
+                    host: 'somehost.net'
+                },
+                result: {
+                    status: 'pass'
                 }
             };
 
@@ -197,7 +222,24 @@ describe('CheckTask', function() {
             it('should error on invalid serialized data, invalid JSON data', function(done) {
                 var task = new CheckTask();
 
-                task.deserialize('{"id": "abcde"}')
+                task.deserialize('[1,2,3]')
+                    .then(() => {
+                        done(new Error('not here'));
+                    })
+                    .catch((error) => {
+
+                        assert.equal(error.checkable, true);
+                        assert.equal(error.ErrorCodes.INVALID_DATA, error.code);
+
+                        done();
+                    });
+
+            });
+
+            it('should error on invalid serialized data, empty JSON object', function(done) {
+                var task = new CheckTask();
+
+                task.deserialize('{}')
                     .then(() => {
                         done(new Error('not here'));
                     })
