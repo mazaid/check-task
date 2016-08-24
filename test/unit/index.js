@@ -115,9 +115,13 @@ describe('CheckTask', function() {
 
                 var task = new CheckTask(raw);
 
+                var valid = JSON.parse(JSON.stringify(raw));
+
+                valid.data.timeout = 60;
+
                 task.serialize()
                     .then((serialized) => {
-                        assert.equal(JSON.stringify(raw), serialized);
+                        assert.equal(JSON.stringify(valid), serialized);
                         done();
                     })
                     .catch((error) => {
