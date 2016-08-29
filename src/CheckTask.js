@@ -122,10 +122,32 @@ class CheckTask {
     /**
      * data setter
      *
+     * TODO tests
+     *
      * @param  {Object} value
      */
     set data(value) {
         this._task.data = value;
+    }
+
+    /**
+     * rawResult getter
+     *
+     * TODO tests
+     *
+     * @return {*}
+     */
+    get rawResult() {
+        return this._task.rawResult;
+    }
+
+    /**
+     * rawResult setter
+     *
+     * @param  {*} value
+     */
+    set rawResult(value) {
+        this._task.rawResult = value;
     }
 
     /**
