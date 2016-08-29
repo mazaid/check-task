@@ -198,7 +198,7 @@ class CheckTask {
      * set finishDate and status
      */
     finished() {
-        this._task.finished = Statuses.FINISHED;
+        this._task.status = Statuses.FINISHED;
         this._task.finishDate = this._time(true);
     }
 
