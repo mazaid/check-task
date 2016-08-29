@@ -201,7 +201,7 @@ class CheckTask {
                 .then((validData) => {
                     this._valid = true;
                     this._task = validData;
-                    resolve();
+                    resolve(this);
                 })
                 .catch((error) => {
                     if (error.name === 'ValidationError') {

@@ -25,7 +25,8 @@ describe('CheckTask', function() {
             var task = new CheckTask(raw);
 
             task.validate()
-                .then(() => {
+                .then((validTask) => {
+                    assert.deepEqual(validTask, task);
                     assert.equal(task.isValid(), true);
                     done();
                 })
@@ -50,7 +51,8 @@ describe('CheckTask', function() {
             var task = new CheckTask(raw);
 
             task.validate()
-                .then(() => {
+                .then((validTask) => {
+                    assert.deepEqual(validTask, task);
                     assert.equal(task.isValid(), true);
                     done();
                 })
