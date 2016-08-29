@@ -115,7 +115,7 @@ describe('CheckTask', function() {
 
                 var task = new CheckTask(raw);
 
-                var valid = JSON.parse(JSON.stringify(raw));
+                var valid = JSON.parse(JSON.stringify(task._task));
 
                 valid.data.timeout = 60;
 

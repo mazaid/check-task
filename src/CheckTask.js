@@ -5,6 +5,13 @@ var ErrorCodes = {
     INVALID_DATA: 'invalidData'
 };
 
+var Statuses = {
+    CREATED: 'created',
+    QUEUED: 'queued',
+    STARTED: 'started',
+    FINISHED: 'finished'
+};
+
 var error = require('mazaid-error/create')(ErrorCodes);
 
 var validate = require('./validate');
@@ -22,6 +29,8 @@ class CheckTask {
      */
     constructor(rawTask) {
 
+        this.Statuses = Statuses;
+
         this.ErrorCodes = ErrorCodes;
 
         this._valid = false;
@@ -31,14 +40,18 @@ class CheckTask {
             execTaskId: null,
             checker: null,
             data: {},
+            status: null,
+            rawResult: null,
             result: null,
             creationDate: null,
+            queuedDate: null,
             startDate: null,
             finishDate: null
         };
 
         if (rawTask) {
             this._task = rawTask;
+            this.created();
         }
 
     }
@@ -134,24 +147,37 @@ class CheckTask {
     }
 
     /**
-     * set creationDate
+     * set creationDate and status
      */
     created() {
-        this._task.creationDate = this._time();
+        this._task.status = Statuses.CREATED;
+        this._task.creationDate = this._time(true);
     }
 
     /**
-     * set startDate
+     * set queuedDate and status
+     *
+     * TODO tests
+     */
+    queued() {
+        this._task.status = Statuses.QUEUED;
+        this._task.queuedDate = this._time(true);
+    }
+
+    /**
+     * set startDate and status
      */
     started() {
-        this._task.startDate = this._time();
+        this._task.status = Statuses.STARTED;
+        this._task.startDate = this._time(true);
     }
 
     /**
-     * set finishDate
+     * set finishDate and status
      */
     finished() {
-        this._task.finishDate = this._time();
+        this._task.finished = Statuses.FINISHED;
+        this._task.finishDate = this._time(true);
     }
 
     /**
@@ -282,10 +308,17 @@ class CheckTask {
     /**
      * get timestamp
      *
+     * @param {Boolean} round
      * @return {Number}
      */
-    _time() {
-        return (new Date()).getTime() / 1000;
+    _time(round) {
+        var ts = (new Date()).getTime() / 1000;
+
+        if (round) {
+            ts = Math.round(ts);
+        }
+
+        return ts;
     }
 
 }
