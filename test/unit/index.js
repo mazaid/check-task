@@ -119,7 +119,7 @@ describe('CheckTask', function() {
 
                 var valid = JSON.parse(JSON.stringify(task._task));
 
-                valid.data.timeout = 60;
+                valid.timeout = 60;
 
                 task.serialize()
                     .then((serialized) => {

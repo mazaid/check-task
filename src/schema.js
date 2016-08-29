@@ -4,9 +4,8 @@ module.exports = {
     id: joi.string().guid().required(),
     execTaskId: joi.string().guid(),
     checker: joi.string().required(),
-    data: joi.object().unknown(true).required().keys({
-        timeout: joi.number().min(1).default(60).description('task execution timeout in seconds, default = 60')
-    }),
+    timeout: joi.number().min(1).default(60).description('task execution timeout in seconds, default = 60'),
+    data: joi.object().unknown(true).required(),
     // TODO tests
     status: joi.string().valid(['created', 'queued', 'started', 'finished']).required(),
 
