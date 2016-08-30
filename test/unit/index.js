@@ -333,6 +333,44 @@ describe('CheckTask', function() {
                 assert.deepEqual(data.checker, value);
             });
 
+            it('#status', function () {
+                var task = new CheckTask({id: 'asd'});
+
+                assert.deepEqual(task.status, task.Statuses.CREATED);
+
+                task.queued();
+
+                assert.deepEqual(task.status, task.Statuses.QUEUED);
+
+                task.started();
+
+                assert.deepEqual(task.status, task.Statuses.STARTED);
+
+                task.finished();
+
+                assert.deepEqual(task.status, task.Statuses.FINISHED);
+            });
+
+            it('#timeout', function () {
+                var task = new CheckTask();
+
+                // default
+                assert.equal(task.timeout, 60);
+
+                task.timeout = 30;
+
+                assert.equal(task.timeout, 30);
+            });
+
+            it('#rawResult', function () {
+                var task = new CheckTask();
+
+                var value = {test: 123};
+
+                task.rawResult = value;
+
+                assert.deepEqual(task.rawResult, value);
+            });
 
         });
 

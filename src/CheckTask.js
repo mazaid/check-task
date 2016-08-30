@@ -40,6 +40,7 @@ class CheckTask {
             execTaskId: null,
             checker: null,
             data: {},
+            timeout: 60,
             status: null,
             rawResult: null,
             result: null,
@@ -111,6 +112,24 @@ class CheckTask {
     }
 
     /**
+     * timeout getter
+     *
+     * @return {String}
+     */
+    get timeout() {
+        return this._task.timeout;
+    }
+
+    /**
+     * timeout setter
+     *
+     * @param  {String} value
+     */
+    set timeout(value) {
+        this._task.timeout = value;
+    }
+
+    /**
      * data getter
      *
      * @return {Object}
@@ -128,6 +147,15 @@ class CheckTask {
      */
     set data(value) {
         this._task.data = value;
+    }
+
+    /**
+     * status getter
+     *
+     * @return {String}
+     */
+    get status() {
+        return this._task.status;
     }
 
     /**
