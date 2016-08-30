@@ -1,9 +1,12 @@
 {
   "name": "mazaid-check-task",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "mazaid CheckTask DTO",
   "main": "index.js",
-  "files": ["index.js", "src"],
+  "files": [
+    "index.js",
+    "src"
+  ],
   "scripts": {
     "docs": "rm -rf ./docs && ./node_modules/.bin/jsdoc ./ -c ./.jsdoc.json --verbose && open ./docs/index.html",
     "tests": "./node_modules/.bin/mocha ./test/",
