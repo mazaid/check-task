@@ -23,6 +23,7 @@ module.exports = {
     }).default(null).allow(null),
 
     creationDate: joi.number().integer().min(0).required(),
+    timeoutDate: joi.number().integer().min(0).required(),
 
     // TODO tests
     queuedDate: joi.number().integer().min(0).default(null).allow(null),
