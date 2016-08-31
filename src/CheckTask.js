@@ -197,6 +197,51 @@ class CheckTask {
     }
 
     /**
+     * creationDate getter
+     *
+     * @return {Number}
+     */
+    get creationDate() {
+        return this._task.creationDate;
+    }
+
+    /**
+     * timeoutDate getter
+     *
+     * @return {Number}
+     */
+    get timeoutDate() {
+        return this._task.timeoutDate;
+    }
+
+    /**
+     * queuedDate getter
+     *
+     * @return {Number}
+     */
+    get queuedDate() {
+        return this._task.queuedDate;
+    }
+
+    /**
+     * startDate getter
+     *
+     * @return {Number}
+     */
+    get startDate() {
+        return this._task.startDate;
+    }
+
+    /**
+     * finishDate getter
+     *
+     * @return {Number}
+     */
+    get finishDate() {
+        return this._task.finishDate;
+    }
+
+    /**
      * set creationDate and status
      */
     created() {
