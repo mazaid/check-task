@@ -1,6 +1,6 @@
 {
   "name": "mazaid-check-task",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "mazaid CheckTask DTO",
   "main": "index.js",
   "files": [
