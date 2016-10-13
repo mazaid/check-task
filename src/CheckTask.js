@@ -45,6 +45,7 @@ class CheckTask {
             rawResult: null,
             result: null,
             creationDate: null,
+            timeoutDate: null,
             queuedDate: null,
             startDate: null,
             finishDate: null
@@ -52,6 +53,11 @@ class CheckTask {
 
         if (rawTask) {
             this._task = rawTask;
+
+            if (!this._task.timeout) {
+                this._task.timeout = 60;
+            }
+
             this.created();
         }
 
@@ -247,6 +253,7 @@ class CheckTask {
     created() {
         this._task.status = Statuses.CREATED;
         this._task.creationDate = this._time(true);
+        this._task.timeoutDate = this._task.creationDate + this._task.timeout;
     }
 
     /**
