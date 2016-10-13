@@ -11,15 +11,13 @@ module.exports = {
     timeout: joi.number().min(1).default(60).description('task execution timeout in seconds, default = 60'),
     data: joi.object().unknown(true).required(),
 
-    // TODO tests
     status: joi.string().valid(['created', 'queued', 'started', 'finished']).required(),
 
-    // TODO tests
     rawResult: joi.any().description('parsed exec result').default(null).allow(null),
 
     result: joi.object().unknown(true).keys({
         status: joi.string().valid(['pass', 'fail', 'warn']).required(),
-        message: joi.string(),
+        message: joi.string()
     }).default(null).allow(null),
 
     creationDate: joi.number().integer().min(0).required(),

@@ -147,8 +147,6 @@ class CheckTask {
     /**
      * data setter
      *
-     * TODO tests
-     *
      * @param  {Object} value
      */
     set data(value) {
@@ -166,8 +164,6 @@ class CheckTask {
 
     /**
      * rawResult getter
-     *
-     * TODO tests
      *
      * @return {*}
      */
@@ -258,8 +254,6 @@ class CheckTask {
 
     /**
      * set queuedDate and status
-     *
-     * TODO tests
      */
     queued() {
         this._task.status = Statuses.QUEUED;
