@@ -194,6 +194,7 @@ describe('CheckTask', function() {
             var valid = JSON.parse(JSON.stringify(task._task));
 
             valid.checkId = null;
+            valid.userAnalyzeFn = null;
             valid.timeout = 60;
             valid.rawResult = null;
             valid.result = null;
