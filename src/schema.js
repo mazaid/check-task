@@ -12,7 +12,7 @@ module.exports = {
 
     data: joi.object().unknown(true).required(),
 
-    userAnalyzeFn: joi.string().description('custom user analyze function'),
+    userAnalyzeFn: joi.string().description('custom user analyze function').default(null).allow(null),
 
     status: joi.string().valid(['created', 'queued', 'started', 'finished']).required(),
 
