@@ -9,7 +9,10 @@ module.exports = {
 
     checker: joi.string().required(),
     timeout: joi.number().min(1).default(60).description('task execution timeout in seconds, default = 60'),
+
     data: joi.object().unknown(true).required(),
+
+    userAnalyzeFn: joi.string().description('custom user analyze function'),
 
     status: joi.string().valid(['created', 'queued', 'started', 'finished']).required(),
 

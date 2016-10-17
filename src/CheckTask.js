@@ -40,6 +40,7 @@ class CheckTask {
             execTaskId: null,
             checker: null,
             data: {},
+            userAnalyzeFn: null,
             timeout: 60,
             status: null,
             rawResult: null,
@@ -243,6 +244,14 @@ class CheckTask {
         return this._task.finishDate;
     }
 
+    get userAnalyzeFn() {
+        return this._task.userAnalyzeFn;
+    }
+
+    set userAnalyzeFn(fnString) {
+        this._task.userAnalyzeFn = fnString;
+    }
+
     /**
      * set creationDate and status
      */
@@ -290,10 +299,10 @@ class CheckTask {
      *
      * @return {Promise}
      */
-    validate() {
+    validate(logger) {
 
         return new Promise((resolve, reject) => {
-            validate(this._task)
+            validate(logger, this._task)
                 .then((validData) => {
                     this._valid = true;
                     this._task = validData;
