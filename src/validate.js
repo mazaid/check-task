@@ -25,7 +25,15 @@ module.exports = function(logger, rawData) {
                         loc: true
                     };
 
-                    var syntax = esprima.parse(data.userAnalyzeFn, options);
+                    var userAnalyzeFn = `function userAnalyzeFn(logger, data, result, libs) {
+
+                        return new Promise(function(resolve) {
+                            ${data.userAnalyzeFn}
+                        });
+
+                    }`;
+
+                    var syntax = esprima.parse(userAnalyzeFn, options);
 
                     // if (logger) {
                     //     logger.trace(
