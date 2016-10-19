@@ -33,7 +33,7 @@
   "homepage": "https://github.com/mazaid/exec-task#readme",
   "dependencies": {
     "esprima": "^3.1.0",
-    "joi": "^9.1.1",
+    "joi": "^9.2.0",
     "mazaid-error": "^0.3.1"
   },
   "devDependencies": {
