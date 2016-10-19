@@ -139,7 +139,7 @@ describe('CheckTask', function() {
                     host: 'somehost.net'
                 },
                 userAnalyzeFn: `
-                return 1;
+                :
                 `
             };
 
