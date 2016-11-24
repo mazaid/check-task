@@ -37,6 +37,7 @@ class CheckTask {
 
         this._task = {
             id: null,
+            checkId: null,
             execTaskId: null,
             checker: null,
             data: {},
@@ -80,6 +81,15 @@ class CheckTask {
      */
     set id(value) {
         this._task.id = value;
+    }
+
+    /**
+     * checkId getter
+     *
+     * @return {String}
+     */
+    get checkId() {
+        return this._task.checkId;
     }
 
     /**
