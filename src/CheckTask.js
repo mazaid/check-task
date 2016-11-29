@@ -27,7 +27,7 @@ class CheckTask {
      * @constructor
      * @param  {Object} rawTask
      */
-    constructor(rawTask) {
+    constructor (rawTask) {
 
         this.Statuses = Statuses;
 
@@ -70,7 +70,7 @@ class CheckTask {
      *
      * @return {String}
      */
-    get id() {
+    get id () {
         return this._task.id;
     }
 
@@ -79,7 +79,7 @@ class CheckTask {
      *
      * @param  {String} value
      */
-    set id(value) {
+    set id (value) {
         this._task.id = value;
     }
 
@@ -88,7 +88,7 @@ class CheckTask {
      *
      * @return {String}
      */
-    get checkId() {
+    get checkId () {
         return this._task.checkId;
     }
 
@@ -97,7 +97,7 @@ class CheckTask {
      *
      * @return {String}
      */
-    get execTaskId() {
+    get execTaskId () {
         return this._task.execTaskId;
     }
 
@@ -106,7 +106,7 @@ class CheckTask {
      *
      * @param  {String} value
      */
-    set execTaskId(value) {
+    set execTaskId (value) {
         this._task.execTaskId = value;
     }
 
@@ -115,7 +115,7 @@ class CheckTask {
      *
      * @return {String}
      */
-    get checker() {
+    get checker () {
         return this._task.checker;
     }
 
@@ -124,7 +124,7 @@ class CheckTask {
      *
      * @param  {String} value
      */
-    set checker(value) {
+    set checker (value) {
         this._task.checker = value;
     }
 
@@ -133,7 +133,7 @@ class CheckTask {
      *
      * @return {String}
      */
-    get timeout() {
+    get timeout () {
         return this._task.timeout;
     }
 
@@ -142,7 +142,7 @@ class CheckTask {
      *
      * @param  {String} value
      */
-    set timeout(value) {
+    set timeout (value) {
         this._task.timeout = value;
     }
 
@@ -151,7 +151,7 @@ class CheckTask {
      *
      * @return {Object}
      */
-    get data() {
+    get data () {
         return this._task.data;
     }
 
@@ -160,7 +160,7 @@ class CheckTask {
      *
      * @param  {Object} value
      */
-    set data(value) {
+    set data (value) {
         this._task.data = value;
     }
 
@@ -169,7 +169,7 @@ class CheckTask {
      *
      * @return {String}
      */
-    get status() {
+    get status () {
         return this._task.status;
     }
 
@@ -178,7 +178,7 @@ class CheckTask {
      *
      * @return {*}
      */
-    get rawResult() {
+    get rawResult () {
         return this._task.rawResult;
     }
 
@@ -187,7 +187,7 @@ class CheckTask {
      *
      * @param  {*} value
      */
-    set rawResult(value) {
+    set rawResult (value) {
         this._task.rawResult = value;
     }
 
@@ -196,7 +196,7 @@ class CheckTask {
      *
      * @return {Object}
      */
-    get result() {
+    get result () {
         return this._task.result;
     }
 
@@ -205,7 +205,7 @@ class CheckTask {
      *
      * @param  {Object} value
      */
-    set result(value) {
+    set result (value) {
         this._task.result = value;
     }
 
@@ -214,7 +214,7 @@ class CheckTask {
      *
      * @return {Number}
      */
-    get creationDate() {
+    get creationDate () {
         return this._task.creationDate;
     }
 
@@ -223,7 +223,7 @@ class CheckTask {
      *
      * @return {Number}
      */
-    get timeoutDate() {
+    get timeoutDate () {
         return this._task.timeoutDate;
     }
 
@@ -232,7 +232,7 @@ class CheckTask {
      *
      * @return {Number}
      */
-    get queuedDate() {
+    get queuedDate () {
         return this._task.queuedDate;
     }
 
@@ -241,7 +241,7 @@ class CheckTask {
      *
      * @return {Number}
      */
-    get startDate() {
+    get startDate () {
         return this._task.startDate;
     }
 
@@ -250,22 +250,32 @@ class CheckTask {
      *
      * @return {Number}
      */
-    get finishDate() {
+    get finishDate () {
         return this._task.finishDate;
     }
 
-    get userAnalyzeFn() {
+    /**
+     * user analyze function getter
+     *
+     * @return {String|Null}
+     */
+    get userAnalyzeFn () {
         return this._task.userAnalyzeFn;
     }
 
-    set userAnalyzeFn(fnString) {
+    /**
+     * user analyze function setter
+     *
+     * @param  {String} fnString
+     */
+    set userAnalyzeFn (fnString) {
         this._task.userAnalyzeFn = fnString;
     }
 
     /**
      * set creationDate and status
      */
-    created() {
+    created () {
         this._task.status = Statuses.CREATED;
         this._task.creationDate = this._time(true);
         this._task.timeoutDate = this._task.creationDate + this._task.timeout;
@@ -274,7 +284,7 @@ class CheckTask {
     /**
      * set queuedDate and status
      */
-    queued() {
+    queued () {
         this._task.status = Statuses.QUEUED;
         this._task.queuedDate = this._time(true);
     }
@@ -282,7 +292,7 @@ class CheckTask {
     /**
      * set startDate and status
      */
-    started() {
+    started () {
         this._task.status = Statuses.STARTED;
         this._task.startDate = this._time(true);
     }
@@ -290,7 +300,7 @@ class CheckTask {
     /**
      * set finishDate and status
      */
-    finished() {
+    finished () {
         this._task.status = Statuses.FINISHED;
         this._task.finishDate = this._time(true);
     }
@@ -300,16 +310,17 @@ class CheckTask {
      *
      * @return {Boolean}
      */
-    isValid() {
+    isValid () {
         return this._valid;
     }
 
     /**
      * validate task data
      *
+     * @param {logger} logger
      * @return {Promise}
      */
-    validate(logger) {
+    validate (logger) {
 
         return new Promise((resolve, reject) => {
             validate(logger, this._task)
@@ -340,7 +351,7 @@ class CheckTask {
      *
      * @return {Promise}
      */
-    serialize() {
+    serialize () {
 
         return new Promise((resolve, reject) => {
             if (!this._task || Object.keys(this._task).length === 0) {
@@ -365,7 +376,7 @@ class CheckTask {
      * @param  {String} raw
      * @return {Promise}
      */
-    deserialize(raw) {
+    deserialize (raw) {
 
         return new Promise((resolve, reject) => {
 
@@ -405,7 +416,7 @@ class CheckTask {
      *
      * @return {Object}
      */
-    toObject() {
+    toObject () {
         return JSON.parse(JSON.stringify(this._task));
     }
 
@@ -416,7 +427,7 @@ class CheckTask {
      * @param  {String} code
      * @return {Error}
      */
-    _error(message, code) {
+    _error (message, code) {
         return error(message, code, entityName);
     }
 
@@ -426,7 +437,7 @@ class CheckTask {
      * @param {Boolean} round
      * @return {Number}
      */
-    _time(round) {
+    _time (round) {
         var ts = (new Date()).getTime() / 1000;
 
         if (round) {
